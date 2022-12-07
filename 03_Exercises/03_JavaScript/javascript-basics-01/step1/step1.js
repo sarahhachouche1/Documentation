@@ -1,4 +1,4 @@
-function display() {
-   var name = "Sarah";
-   alert("Hey "+ name);
-}
+function showAlert() {
+   var name = "name";
+   alert ("Hey "+name);
+ }

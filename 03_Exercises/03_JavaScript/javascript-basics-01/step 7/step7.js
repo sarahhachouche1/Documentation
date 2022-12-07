@@ -4,7 +4,6 @@ function multipleOperations()
   shoe_size= parseInt(document.getElementById("shoe_size").value);
    birth_year = parseInt(document.getElementById("year").value);
    res=(shoe_size*2+5)*50-birth_year+1766;
-   console.log(res);
   document.getElementById("txtresult").value = res;
 
   
