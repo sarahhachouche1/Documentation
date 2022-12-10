@@ -10,6 +10,4 @@ function f8()
       res="you are over 18";
    }
    document.getElementById("txtresult").value = res;
-
-  
 } 
