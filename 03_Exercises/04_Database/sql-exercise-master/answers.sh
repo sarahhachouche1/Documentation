@@ -61,3 +61,22 @@ where c.Date<'2000';
 select Company
 from employees
 where Role='Graphic Designer'
+18-
+SELECT  Name
+FROM students
+where Points = (SELECT MAX(Points) FROM students);
+19-
+SELECT AVG(Points)
+FROM students
+20-
+Select count(ID)
+FROM students
+where Points='500';
+21-
+SELECT Name
+FROM students
+where Name like '%s%'
+22-
+SELECT * 
+FROM students
+ORDER BY Points DESC;
