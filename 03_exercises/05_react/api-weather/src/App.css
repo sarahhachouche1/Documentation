@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap');
+.nav{
+    background-color: #759eda;
+    max-width: 100%;
+    max-height:100%;
+    padding: 2rem;
+}
+*:focus {
+  outline: none;
+  border-bottom: 1.5px solid #5879c7;
+}
+button{
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    background-color: #5778c6;
+    padding: 1.2rem;
+    font-family: Raleway;
+    font-size: 1.75rem;
+}
+input{
+    max-width: 100%;
+    max-height: 100%;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    background-color: #759eda;
+    color: white;
+    font-family: Raleway;
+    font-size: 2rem;
+    padding-bottom: 1rem;
+
+}
+.container{
+    display: flex;
+    align-items: flex-end;
+    gap:3rem;
+}
+.weatherN{
+   
+    max-width: 100%;
+    height: 200rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+::placeholder { 
+    color: white;
+    opacity:0.75;
+    font-family: Raleway;
+    font-size: 2rem;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.imgN{
+    width:15rem;
+    height: 15rem;   
+    padding-top:3rem;
+} 
+.imgL{
+    width:5rem;
+    height:5rem; 
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.part1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-.App-link {
-  color: #61dafb;
+.part2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:0; 
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.description{
+    font-family: Raleway;
+    font-size: 2rem;
+    color:white;
+}
+.temp{
+    font-weight: bold;
+}
+.part3{
+    display: flex;
+    gap:3rem;
+    justify-content: center;
+    font-family: Raleway;
+}
+.temperature{
+    font-size: 1.9rem;
+    font-family: Raleway;
+}
+.weatherL{
+    max-width: 100%;
+}
+.img{
+    display: flex;
+    justify-content: center;
+    gap: 5.5rem;
+    padding-top: 2rem;
+}
+.time{
+    padding-top: 5rem;
+    display: flex;
+    justify-content: center;
+    gap:8rem;
+    font-size: large;
+}
+.tempL{
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap:9rem;
+    font-size: large;
 }
