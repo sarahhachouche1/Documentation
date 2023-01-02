@@ -60,6 +60,11 @@ function onDataReceived(text) {
 function unknownCommand(c){
   console.log('unknown command: "'+c.trim()+'"')
 }
+/**
+ * list all the possible commands
+ * 
+ * @returns {void}
+ */
 function help()
 {
   console.log(" press exit or quit  to exist the application\n press hello for greetings\n press help to list all the possible commands")
