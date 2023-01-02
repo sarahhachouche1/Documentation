@@ -54,9 +54,19 @@ function onDataReceived(text) {
         {
             list();
         }
-        else{
-           unknownCommand(text);
+        else
+        {
+            if(text.trim().substring(0,4)=="add " && text.length>5)
+            {
+              
+                add(text.replace( /[\r\n\s]+/gm, " " ).trim())
+
+            }
+            else{
+              unknownCommand(text);
+           }
         }
+        
       
        
     }
@@ -71,6 +81,12 @@ function list()
     }
 }
 
+function add(str)
+{
+  const result = str.substring(4);
+  arr.push(result)
+  check.push("[ ]")
+}
 /**
  * prints "unknown command"
  * This function is supposed to run when all other commands have failed
