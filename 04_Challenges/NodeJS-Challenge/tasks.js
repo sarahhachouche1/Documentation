@@ -73,7 +73,7 @@ function unknownCommand(c){
  */
 function help()
 {
-  console.log(" press exit or quit  to exist the application\n press hello for greetings\n press help to list all the possible commands")
+  console.log(" press exit or quit  to exist the application\n press hello for greetings it takes parameter \n press help to list all the possible commands")
 }
 
 /**
