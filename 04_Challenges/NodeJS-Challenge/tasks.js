@@ -34,18 +34,24 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
+ /** console.log(text.charAt(text.length-2))
+  const withoutLineBreaks = **/
+
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
-  else if(text === 'hello\n'){
-    hello();
+  else if(text.trim().split(' ',1) == 'hello'){
+    hello(text);
   }
   else{
     if(text === 'help\n')
     {
         help();
     }
-    else unknownCommand(text);
+    else{
+       unknownCommand(text);
+    }
+    
   }
 }
 
@@ -71,12 +77,13 @@ function help()
 }
 
 /**
- * Says hello
+ * Says hello extended
  *
+ * @param {string} str 
  * @returns {void}
  */
-function hello(){
-  console.log('hello!')
+function hello(str){
+  console.log(str.replace( /[\r\n\s]+/gm, " " ).trim()+ "!")
 }
 
 
