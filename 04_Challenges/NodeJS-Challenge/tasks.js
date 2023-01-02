@@ -1,4 +1,5 @@
-
+let arr = ["batata"];
+let check =["[ ]"];
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -49,12 +50,26 @@ function onDataReceived(text) {
         help();
     }
     else{
-       unknownCommand(text);
+       if(text === 'list\n')
+        {
+            list();
+        }
+        else{
+           unknownCommand(text);
+        }
+      
+       
     }
     
   }
 }
-
+function list()
+{
+    for(let i = 0 ; i<arr.length ; i++)
+    {
+         console.log(i+1 +" - "+check[i]+" "+ arr[i]+ '\n')
+    }
+}
 
 /**
  * prints "unknown command"
