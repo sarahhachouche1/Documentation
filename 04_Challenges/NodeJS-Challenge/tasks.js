@@ -64,7 +64,7 @@ function onDataReceived(text) {
             else{
               if(text.trim()== 'remove')
               {
-                  remove(text.replace( /[\r\n\s]+/gm, " " ).trim().length-1)
+                  remove(arr.length-1)
               }
               else{
                 if(text.trim().substring(0,6) == "remove")
@@ -73,7 +73,14 @@ function onDataReceived(text) {
                 }
                 else
                 {
-                  unknownCommand(text);
+                  if(text.replace( /[\r\n\s]+/gm, " " ).trim().substring(0, text.indexOf(' ')) == "edit")
+                  {
+                          edit(text)
+                  }
+                  else
+                    {
+                      unknownCommand(text);
+                    }
                 }
              }
             }
@@ -86,9 +93,32 @@ function onDataReceived(text) {
     
   }
 }
+function edit(str)
+{
+  /**if(Number.isInteger(str.substring(str..indexOf(' ') + 1)))**/
+      let index,item;
+      if((!isNaN(str.replace( /[\r\n\s]+/gm, " " ).trim().substring(5,6)))) 
+      {
+          index=parseInt(str.replace( /[\r\n\s]+/gm, " " ).trim().substring(5,6))-1
+          item =str.replace( /[\r\n\s]+/gm, " " ).trim().substring(6)
+          if(index<0 || index >= arr.length)
+          {
+            console.log("unavailable index")
+            return 
+          }
+          
+      } 
+      else
+      {
+        index=arr.length-1;
+        item=str.replace( /[\r\n\s]+/gm, " " ).trim().substring(5)
+      }
+
+      arr[index]=item
+}
 function remove(index){
   if(index>= arr.length || index < 0)
-    console.log("error index not availale")
+    console.log("error unavailable index")
   else{
     arr.splice(index,1)
     check.splice(index,1)

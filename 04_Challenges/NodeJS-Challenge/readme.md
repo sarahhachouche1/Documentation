@@ -136,7 +136,7 @@ If you haven't yet, now would be a good moment to push
 3. Make an "edit" command that works as such:
   - `edit` without anything should give an error
   - `edit new text` should change the *last* task to "new text"
-  - `edit 1 new text` should change the task 1 to "new text"
+  
 4. commit ("edit")  
 
 If you haven't yet, now would be a good moment to push
