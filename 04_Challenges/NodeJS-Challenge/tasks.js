@@ -60,11 +60,24 @@ function onDataReceived(text) {
             {
               
                 add(text.replace( /[\r\n\s]+/gm, " " ).trim())
-
             }
             else{
-              unknownCommand(text);
-           }
+              if(text.trim()== 'remove')
+              {
+                  remove(text.replace( /[\r\n\s]+/gm, " " ).trim().length-1)
+              }
+              else{
+                if(text.trim().substring(0,6) == "remove")
+                {
+                    remove(parseInt(text.replace( /[\r\n\s]+/gm, " " ).trim().substring(6).trim())-1)
+                }
+                else
+                {
+                  unknownCommand(text);
+                }
+             }
+            }
+            
         }
         
       
@@ -72,6 +85,10 @@ function onDataReceived(text) {
     }
     
   }
+}
+function remove(index){
+  arr.splice(index,1)
+  check.splice(index,1)
 }
 function list()
 {
