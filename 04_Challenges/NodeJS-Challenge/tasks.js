@@ -87,8 +87,12 @@ function onDataReceived(text) {
   }
 }
 function remove(index){
-  arr.splice(index,1)
-  check.splice(index,1)
+  if(index>= arr.length || index < 0)
+    console.log("error index not availale")
+  else{
+    arr.splice(index,1)
+    check.splice(index,1)
+  }
 }
 function list()
 {
