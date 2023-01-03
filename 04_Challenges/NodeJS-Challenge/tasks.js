@@ -79,7 +79,13 @@ function onDataReceived(text) {
                   }
                   else
                     {
-                      unknownCommand(text);
+                        if(text.trim().substring(0,5) == "check" && text.trim().length>6 ){
+                              checking(parseInt(text.replace( /[\r\n\s]+/gm, " " ).trim().substring(6).trim())-1)
+                        }
+                        else{
+                          unknownCommand(text);
+                        }
+            
                     }
                 }
              }
@@ -115,6 +121,14 @@ function edit(str)
       }
 
       arr[index]=item
+}
+function checking(index)
+{
+    if(index<0 || index >= check.length) {
+      console.log("unavailable index")
+      return
+    }
+    check[index]="[✓]";
 }
 function remove(index){
   if(index>= arr.length || index < 0)
