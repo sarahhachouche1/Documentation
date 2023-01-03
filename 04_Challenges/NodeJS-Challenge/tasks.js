@@ -169,7 +169,7 @@ function unknownCommand(c){
  */
 function help()
 {
-  console.log(" press exit or quit  to exist the application\n press hello for greetings it takes parameter \n press help to list all the possible commands\n press list command to list all tasks \n press add command to add a task \n press remove command to remove the last task remove n to remove nth task \n ")
+  console.log(" press exit or quit  to exist the application\n press hello for greetings it takes parameter \n press help to list all the possible commands\n press list command to list all tasks \n press add command to add a task \n press remove command to remove the last task remove n to remove nth task \n press`check n` to change task n to done ")
 }
 
 /**
