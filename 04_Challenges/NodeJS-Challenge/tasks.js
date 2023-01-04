@@ -1,5 +1,7 @@
-let arr = ["batata"];
-let check =["[ ]"];
+const { fieldSize } = require("tar");
+
+var arr = [];
+var check =[];
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -10,12 +12,25 @@ let check =["[ ]"];
  * @param  {string} name the name of the app
  * @returns {void}
  */
+var filename = process.argv[2] ? process.argv[2] : 'database.json' ;
+
 function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
+  const fs = require('fs');
+  const path = require('path');
+  try {
+    let data = fs.readFileSync(path.join(__dirname, 'files' , filename), 'utf8');
+    let obj = JSON.parse(data);
+    arr=obj.list;
+    check=obj.done;
+
+   } catch (err) {
+  console.error(err);
+  }
 }
 
 
@@ -83,7 +98,12 @@ function onDataReceived(text) {
                               checking(parseInt(text.replace( /[\r\n\s]+/gm, " " ).trim().substring(6).trim())-1)
                         }
                         else{
-                          unknownCommand(text);
+                          if(text.trim().substring(0,7) == "uncheck" && text.trim().length>8){
+                            unchecking(parseInt(text.replace( /[\r\n\s]+/gm, " " ).trim().substring(8).trim())-1)
+                          }
+                          else{
+                            unknownCommand(text);
+                          }
                         }
             
                     }
@@ -98,6 +118,15 @@ function onDataReceived(text) {
     }
     
   }
+}
+function unchecking(index){
+  if(index<0 || index >= check.length) {
+    console.log("unavailable index")
+    return
+  }
+  check[index]="[ ]";
+  index++;
+  console.log("task " +index+ " is marked as unchecked \n")
 }
 function edit(str)
 {
@@ -118,9 +147,12 @@ function edit(str)
       {
         index=arr.length-1;
         item=str.replace( /[\r\n\s]+/gm, " " ).trim().substring(5)
+        
       }
 
       arr[index]=item
+      index++;
+      console.log("task " +index + " changed to " + item+"\n")
 }
 function checking(index)
 {
@@ -129,14 +161,19 @@ function checking(index)
       return
     }
     check[index]="[✓]";
+    index++;
+    console.log("task " +index+ " is marked as checked \n")
 }
 function remove(index){
+  const item=arr[index]
   if(index>= arr.length || index < 0)
     console.log("error unavailable index")
   else{
     arr.splice(index,1)
     check.splice(index,1)
   }
+  
+  console.log("task " +item + " is removed \n")
 }
 function list()
 {
@@ -151,6 +188,7 @@ function add(str)
   const result = str.substring(4);
   arr.push(result)
   check.push("[ ]")
+  console.log("task " +result + " addeed \n")
 }
 /**
  * prints "unknown command"
@@ -169,7 +207,7 @@ function unknownCommand(c){
  */
 function help()
 {
-  console.log(" press exit or quit  to exist the application\n press hello for greetings it takes parameter \n press help to list all the possible commands\n press list command to list all tasks \n press add command to add a task \n press remove command to remove the last task remove n to remove nth task \n press`check n` to change task n to done ")
+  console.log(" press exit or quit  to exist the application\n press hello for greetings it takes parameter \n press help to list all the possible commands\n press list command to list all tasks \n press add command to add a task \n press remove command to remove the last task remove n to remove nth task \n press`check n` to change task n to done \n press`uncheck n` to change task n to undone")
 }
 
 /**
@@ -189,6 +227,16 @@ function hello(str){
  * @returns {void}
  */
 function quit(){
+  const fs = require('fs');
+  const path = require('path');
+  const myJSON = JSON.stringify({ list: arr, done: check });
+  fs.writeFileSync(path.join(__dirname, 'files', filename),myJSON, (err)=>{
+    if(err) throw err;
+   
+  })
+  process.on('uncaughtException', err =>{
+    console.error("error while saving")
+  })
   console.log('Quitting now, goodbye!')
   process.exit();
 }
