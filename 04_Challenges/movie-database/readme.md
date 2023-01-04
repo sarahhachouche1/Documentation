@@ -2,7 +2,7 @@
 
 or CMDB for short
 
-We'll use Express and Node to create a database and a way to control it.
+We'll use Express and Node to create a database and a way to control it.git 
 
 However, and this is important to understand, we will *not* create a front end interface for it.
 
