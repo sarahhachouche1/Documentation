@@ -1,14 +1,26 @@
+require('dotenv').config()
+
 const express = require('express')
 const app = express()
-const port = 3000
+
+const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+mongoose.set('strictQuery', false);
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true})
+const db = mongoose.connection; 
+db.on("error", (error)=> console.error(error))
+db.once("open", ()=> console.log('connected to db'))
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false}));
+
+app.use('/movies', require('./routes/movies'))
+
 
 app.get('/', (req, res) => {
   res.send('ok')
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
 
 
 app.get('/test', (req, res) => {
@@ -59,7 +71,7 @@ app.get('/search',(req,res) => {
   const search = req.query.s;
 
   if (typeof search != 'undefined') {
-      // Search string applied
+      
       const response = {
           status:200, message:"ok", data: search
       };
@@ -76,3 +88,10 @@ app.get('/search',(req,res) => {
       res.send(response);
   }
 });
+
+
+const port = process.env.PORT 
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+
